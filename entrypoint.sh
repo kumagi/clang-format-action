@@ -15,9 +15,6 @@ git fetch origin $BRANCH
 echo "### Branch: $BRANCH (ref: $GITHUB_REF )"
 git checkout $BRANCH
 
-# Ignore workflow files (we may not touch them)
-git update-index --assume-unchanged .github/workflows/*
-
 echo "## Running clang-format on C/C++ source"
 SRC=$(git ls-tree --full-tree -r HEAD | grep -e "\.\(c\|h\|hpp\|cpp\|cc\)\$" | cut -f 2)
 clang-format -style=file -i $SRC
